@@ -13,12 +13,17 @@ const initialState = {
   
 };
 
-const finalCreateStore = applyMiddleware( thunkMiddleware )( createStore )
+const finalCreateStore = compose(
+	applyMiddleware( thunkMiddleware ),
+
+	typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
+)( createStore )
+
 const store = finalCreateStore( rootReducers, initialState );
 
 ReactDOM.render(
-  <Provider store={ store }>
-    <App />
-  </Provider>,
-  document.querySelector('.container')
+	<Provider store={ store }>
+		<App />
+	</Provider>,
+	document.querySelector('.container-fluid')
 );

@@ -1,9 +1,10 @@
 export const SELECT_VIDEO = 'SELECT_VIDEO';
 
-export function selectVideo(videoId) {
-	const url = `https://www.youtube.com/embed/${videoId}`;
- 	return {
-    	type: SELECT_VIDEO,
-    	selectVideo: url
-  	};
+export function selectVideo(video) {
+	return ( dispatch ) => {
+		dispatch({
+			type: SELECT_VIDEO,
+			selectedVideo: video
+		});
+	}
 }

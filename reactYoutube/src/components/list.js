@@ -9,22 +9,22 @@ export class VideoList extends Component {
   
   render() {
     if ( !this.props.videos.items.length ) {
-      return <div>Foo is love...</div>;
+        return null;
     }
     
     const videoItems = this.props.videos.items.map((video) => {
       return (
         <VideoListItem
-          onVideoSelect={this.props.onVideoSelect}
-          key={video.etag}
-          video={video} />
+            onVideoSelect={this.props.onVideoSelect}
+            key={video.etag}
+            video={video} />
       );
     });
 
     return (
-      <ul className="col-md-4 list-group">
-        {videoItems}
-      </ul>
+        <ul className="list-group">
+            {videoItems}
+        </ul>
     );
   }
 };

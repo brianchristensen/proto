@@ -31,9 +31,9 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onFormSubmit} className="input-group">
+      <form onSubmit={this.onFormSubmit} className="input-group" style={{"paddingBottom" : 10}}>
         <input
-          placeholder="Get a five-day forecast in your favorite cities"
+          placeholder="Search Videos"
           className="form-control"
           value={this.state.term}
           onChange={this.onInputChange} />

@@ -1,14 +1,30 @@
+import { SELECT_VIDEO } from '../actions/selected_video';
+
 const initialState = {
-    selectVideo: null
+    selectedVideo: null
 };
 
-// State argument is not application state, only the state
-// this reducer is responsible for
-export default function(state = initialState, action = {}) {
-  switch(action.type) {
-	  case 'VIDEO_SELECTED':
-	    return action.payload;
-	  }
+var playSelectedVideo = (state = initialState, action = {}) => {
+	switch(action.type) {
+		case SELECT_VIDEO:
+			return {
+				video: action.selectedVideo
+			};
 
-  return state;
-}
+		default:
+		 	return state;
+	}
+};
+
+export default playSelectedVideo;
+
+// // State argument is not application state, only the state
+// // this reducer is responsible for
+// export default function(state = initialState, action = {}) {
+//   switch(action.type) {
+// 	  case 'VIDEO_SELECTED':
+// 	    return action.payload;
+// 	  }
+
+//   return state;
+// }
