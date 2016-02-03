@@ -8,14 +8,12 @@ import VideoList from './components/list';
 import VideoDetail from './components/detail';
 
 import * as videosActions from './actions/videos';
-import * as selected_videoActions from './actions/selected_video'
 
 const API_KEY = 'AIzaSyAuQCVeNfKhtRk9KlChQPT1nO27DPO_5Ss';
 
 export class App extends Component {
     static propTypes = {
-        'videos': PropTypes.object.isRequired,
-        'selectedVideo': PropTypes.object.isRequired, 
+        'videos': PropTypes.object.isRequired, 
         'videosActions': PropTypes.object.isRequired
     };
 
@@ -24,7 +22,7 @@ export class App extends Component {
         const title = "YouTube Video Player";
 
         const videoSearch = _.debounce((term) => { this.props.videosActions.fetchVideos(term); }, 300);
-        const selectVideo = (selectedVideo) => { this.props.selected_videoActions.selectVideo(selectedVideo); }
+        const selectVideo = (selectedVideo) => { this.props.videosActions.selectVideo(selectedVideo); }
 
         return (
             <div>
@@ -37,7 +35,7 @@ export class App extends Component {
                             videos={this.props.videos} />
                     </div> 
                     <div className="col-sm-7">
-                        <VideoDetail selectedVideo={this.props.selectedVideo} />
+                        <VideoDetail videos={this.props.videos} />
                     </div>
                 </div>
             </div>
@@ -47,11 +45,9 @@ export class App extends Component {
 
 export default connect(
     ( state ) => ({
-        'videos': state.videos,
-        'selectedVideo': state.selectedVideo
+        'videos': state.videos
     }),
     ( dispatch ) => ({
-        'videosActions': bindActionCreators( videosActions, dispatch ),
-        'selected_videoActions': bindActionCreators( selected_videoActions, dispatch )
+        'videosActions': bindActionCreators( videosActions, dispatch )
     })
 )( App );

@@ -5,20 +5,17 @@ const API_KEY = 'AIzaSyAuQCVeNfKhtRk9KlChQPT1nO27DPO_5Ss';
 
 export const REQUEST_VIDEOS = 'REQUEST_VIDEOS';
 export const RECEIVE_VIDEOS = 'RECEIVE_VIDEOS';
+export const SELECT_VIDEO = 'SELECT_VIDEO';
 
-/*
-export function receiveVideos(video, json) {
-  return {
-    type: RECEIVE_VIDEOS,
-    videos: json.items.map((v) => { return {
-        id: v.id.videoId,
-        href: 'https://www.youtube.com/watch?v=' + v.id.videoId,
-        src: v.snippet.thumbnails.default.url
-      }; 
-    })
-  };
+export function selectVideo(video) {
+  return ( dispatch ) => {
+    dispatch({
+      type: SELECT_VIDEO,
+      selectedVideo: video
+    });
+  }
 }
-*/
+
 export function fetchVideos(term) {
 	return ( dispatch ) => {
 		dispatch( {
@@ -33,8 +30,7 @@ export function fetchVideos(term) {
 
 function getVideos(videos) {
 	return {
-        type: RECEIVE_VIDEOS,
-        
+        type: RECEIVE_VIDEOS,       
         items: videos
     };
 }

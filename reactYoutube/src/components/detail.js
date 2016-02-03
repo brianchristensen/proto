@@ -2,15 +2,15 @@ import React, { PropTypes, Component } from 'react';
 
 export class VideoDetail extends Component {
     static propTypes = {
-        'selectedVideo': PropTypes.object.isRequired
+        'videos': PropTypes.object.isRequired
     };
   
     render() {
-        if (!this.props.selectedVideo.video) {
+        if (!this.props.videos.selectedVideo) {
             return <div>No video selected</div>;
         }
 
-        const videoId = this.props.selectedVideo.video.id.videoId;
+        const videoId = this.props.videos.selectedVideo.id.videoId;
         const url = `https://www.youtube.com/embed/${videoId}`;
 
         return (
@@ -19,8 +19,8 @@ export class VideoDetail extends Component {
                     <iframe className="embed-responsive-item" src={url}></iframe>
                 </div>
                 <div className="details">
-                    <div>{this.props.selectedVideo.video.snippet.title}</div>
-                    <div>{this.props.selectedVideo.video.snippet.description}</div>
+                    <div>{this.props.videos.selectedVideo.snippet.title}</div>
+                    <div>{this.props.videos.selectedVideo.snippet.description}</div>
                 </div>
             </div>
         );
