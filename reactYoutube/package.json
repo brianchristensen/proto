@@ -25,12 +25,14 @@
     "es6-promise": "^3.0.2",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^3.10.1",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3",
+    "history": "^2.0.0",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
     "react-redux": "^4.0.0",
-    "react-router": "^2.0.0-rc5",
-    "redux": "^3.0.4",
-    "redux-thunk": "^1.0.3",
+    "react-router": "^2.0.0",
+    "react-router-redux": "^4.0.0-beta",
+    "redux": "^3.0.0",
+    "redux-thunk": "^1.0.0",
     "youtube-api-search": "0.0.5"
   }
 }
