@@ -1,18 +1,28 @@
 import React from 'react';
 import { Route, IndexRoute, Redirect } from 'react-router';
+import { routerActions } from 'react-router-redux'
 
-// using the `resolve.root` configuration option in webpack
-// which allows us to specify import paths as if
-// they were from the root of the ~/src directory. This makes it
-// very easy to navigate to files regardless of how deeply nested
-// the current file is.
-import Layout from './components/site/layout';
-import BadRequest from './components/site/badRequest';
-import { Login, YouTube } from './components/app';
+import { App, 
+		 Login, 
+		 YouTube, 
+		 BadRequest, 
+		 Layout } from './components/app';
+
+function requireAuth({ dispatch, getState }) {
+    const state = getState();
+    const isLoggedIn = Boolean( state.auth.isAuthorized );
+
+    if ( !isLoggedIn )
+    {
+        dispatch( routerActions.push( '/login' ) );
+    }
+}
 
 export default ( store ) => (
 	<Route path='/' component={ Layout }>
-		<IndexRoute component={ YouTube } />
+		<Route onEnter={ requireAuth( store ) }>
+			<Route path='/youtube' component={ YouTube } />
+		</Route>
 		<Route path='/login' component={ Login } />
 		<Route path='/404' component={ BadRequest } />
 		<Redirect from='*' to='/404' />

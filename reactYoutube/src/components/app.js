@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
-
-export Login from './login/login';
-export YouTube from './youtube/youTubePlayer';
+import { Router, Link } from 'react-router';
 
 export default class App extends React.Component
 {
@@ -26,10 +23,14 @@ export default class App extends React.Component
 	{
 		return (
 			<Provider store={ this.props.store }>
-				<div style={{ height: '100%' }}>
-					{ this.content }
-				</div>
+				{ this.content }
 			</Provider>
 		)
 	}
 }
+
+// export all app sub-components from here for easy require from ./components/app
+export Login from './login/login';
+export YouTube from './youtube/youTubePlayer';
+export Layout from './site/layout';
+export BadRequest from './site/badRequest';
